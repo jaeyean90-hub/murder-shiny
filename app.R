@@ -29,10 +29,10 @@
 # ------------------------------------------------------------
 
 # install.packages("shiny")
-library(shiny)
-library(bslib)
-library(dplyr)
-library(ggplot2)
+# library(shiny)
+# library(bslib)
+# library(dplyr)
+# library(ggplot2)
 
 
 # ------------------------------------------------------------
@@ -42,7 +42,7 @@ library(ggplot2)
 # Run App / runApp() / the deployment server all run from the folder that holds app.R,
 # so for a file in the same folder you only need its name.
 # ------------------------------------------------------------
-murders <- read.csv("data/murders.csv")
+murders <- read.csv("murders.csv")
 
 # Compute the murder rate (per 100,000 people) once, outside the app (at the top)
 # -> runs only once when the app starts, which is efficient
@@ -236,8 +236,9 @@ server <- function(input, output) {
 # ------------------------------------------------------------
 # Run the app
 # ------------------------------------------------------------
-shinyApp(ui, server)
-
+shinyApp(ui, server) # ui랑 server를 로드 하고 나서 앱을 실행하는 것. 당연히 됨.
+shiny::runApp("path") # 이건 폴더 자체에서 바로 실행시켜 보는 것. 이 폴더 안에 잘 정리되어 있지 않으면 실행이 안 됨.
+# deploy 하기 전에 트라이 해봐야 함. runapp!
 
 # ============================================================
 # [Deployment — run in the Console, not inside app.R]
@@ -268,4 +269,8 @@ shinyApp(ui, server)
 
 # Posit Cloud Connect
 # install.packages("rsconnect")
+# library(rsconnect)
 # rsconnect::writeManifest()
+# 이렇게 쓰는 이유는 package를 너무 많이 쓸 때 function name이 정확히 겹칠 때가 o
+# jason 파일을 만들어줌.
+
